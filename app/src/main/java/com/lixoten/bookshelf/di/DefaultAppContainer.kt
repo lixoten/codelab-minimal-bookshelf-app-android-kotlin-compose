@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
+// notes: No Longer used. AppModule now handles DI-dagger-hilt
 class DefaultAppContainer : AppContainer {
 //    private val json = Json {
 //        ignoreUnknownKeys = true

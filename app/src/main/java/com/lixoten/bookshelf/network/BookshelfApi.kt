@@ -18,11 +18,8 @@ interface BookshelfApi {
     //  - multiple options of set up, phillips seems to be using "gson", select fiends only as needed option too
     @GET("volumes")
     suspend fun getBooks(@Query("q") query: String): Response<QueryResponse>
-    //suspend fun getCoins(): List<CoinDto>
 
-    // "coinId" url path parameter
-    //@GET("/v1/coins/{coinId}")
-    //suspend fun getCoinById(@Path("coinId") coinId: String): CoinDetailDto
+    // "id" url path parameter
     @GET("volumes/{id}")
     suspend fun getBook(@Path("id") id: String): Response<Book>
 }

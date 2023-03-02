@@ -1,20 +1,23 @@
 package com.lixoten.bookshelf.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.lixoten.bookshelf.BookshelfApplication
 import com.lixoten.bookshelf.data.BookshelfRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class QueryViewModel(
+// @HiltViewModel will make models to be
+// created using Hilt's model factory
+// @Inject annotation used to inject all
+// dependencies to view model class
+@HiltViewModel
+class QueryViewModel @Inject constructor(
     private val bookshelfRepository: BookshelfRepository
 ): ViewModel() {
     private val _uiState = MutableStateFlow<QueryUiState>(QueryUiState.Loading)
@@ -69,14 +72,14 @@ class QueryViewModel(
     /**
      * Factory for BookshelfViewModel] that takes BookshelfRepository] as a dependency
      */
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application =
-                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as BookshelfApplication)
-                val bookshelfRepository = application.container.bookshelfRepository
-                QueryViewModel(bookshelfRepository = bookshelfRepository)
-            }
-        }
-    }
+//    companion object {
+//        val Factory: ViewModelProvider.Factory = viewModelFactory {
+//            initializer {
+//                val application =
+//                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as BookshelfApplication)
+//                val bookshelfRepository = application.container.bookshelfRepository
+//                QueryViewModel(bookshelfRepository = bookshelfRepository)
+//            }
+//        }
+//    }
 }
